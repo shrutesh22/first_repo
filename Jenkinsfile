@@ -38,7 +38,9 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Applying YAML files..."
-                sh 'kubectl apply -f .'
+                sh 'kubectl apply -f app.yaml'
+                sh 'kubectl apply -f gateway.yaml'
+                sh 'kubectl apply -f virtualservice.yaml'
             }
         }
 
