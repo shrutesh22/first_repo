@@ -16,3 +16,4 @@ spec:
         host: sample-app
         port:
           number: 80
+      weight: 100
