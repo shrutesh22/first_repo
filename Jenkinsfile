@@ -17,42 +17,42 @@ pipeline {
         stage('List Files') {
             steps {
                 echo "Listing files in workspace..."
-                bat 'dir'
+                sh 'ls -l'
             }
         }
 
         stage('Check kubectl') {
             steps {
                 echo "Checking kubectl installation..."
-                bat 'kubectl version --client'
+                sh 'kubectl version --client'
             }
         }
 
         stage('Check Cluster Connection') {
             steps {
                 echo "Checking Kubernetes cluster..."
-                bat 'kubectl get nodes'
+                sh 'kubectl get nodes'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
                 echo "Applying YAML files..."
-                bat 'kubectl apply -f .'
+                sh 'kubectl apply -f .'
             }
         }
 
         stage('Verify Deployment') {
             steps {
                 echo "Checking pods..."
-                bat 'kubectl get pods'
+                sh 'kubectl get pods'
 
                 echo "Checking services..."
-                bat 'kubectl get svc'
+                sh 'kubectl get svc'
 
                 echo "Checking Istio resources..."
-                bat 'kubectl get gateway'
-                bat 'kubectl get virtualservice'
+                sh 'kubectl get gateway'
+                sh 'kubectl get virtualservice'
             }
         }
     }
