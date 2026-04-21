@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    environment {
+        KUBECONFIG = credentials('kubeconfig')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'UAT', url: 'https://github.com/shrutesh22/first_repo.git'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                bat 'kubectl apply -f .'
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                bat 'kubectl get pods'
+                bat 'kubectl get svc'
+            }
+        }
+    }
+}
