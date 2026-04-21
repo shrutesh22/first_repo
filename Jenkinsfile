@@ -53,6 +53,9 @@ pipeline {
                 echo "Checking Istio resources..."
                 sh 'kubectl get gateway'
                 sh 'kubectl get virtualservice'
+
+                sh 'kubectl get pods -o wide'
+                sh 'kubectl describe deployment'
             }
         }
     }
