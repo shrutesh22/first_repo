@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: app-alpha
+  namespace: ns-alpha
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-system/sample-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /alpha
+    route:
+    - destination:
+        host: sample-app.ns-alpha.svc.cluster.local
+        port:
+          number: 80
