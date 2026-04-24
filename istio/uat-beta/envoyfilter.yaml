@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: add-header-alpha
-  namespace: uat-alpha
+  name: add-header-beta
+  namespace: uat-beta
 spec:
   workloadSelector:
     labels:
@@ -23,5 +23,5 @@ spec:
           "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
           inlineCode: |
             function envoy_on_response(response_handle)
-              response_handle:headers():add("x-env", "alpha")
+              response_handle:headers():add("x-env", "beta")
             end
