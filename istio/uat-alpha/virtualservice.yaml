@@ -8,17 +8,21 @@ spec:
   - "*"
   gateways:
   - istio-system/sample-gateway
+
   http:
   - match:
     - uri:
         prefix: /alpha
+
     route:
     - destination:
-        host: sample-app.ns-alpha.svc.cluster.local
+        host: sample-app.uat-alpha.svc.cluster.local
         port:
           number: 80
-        weight: 90
-     headers:
+      weight: 100
+
+    headers:
       response:
         add:
-           x-env: uat-alpha-v2
+          x-env: uat-alpha-v1
+          x-test: jenkins-deploy
