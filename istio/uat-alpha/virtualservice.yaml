@@ -17,3 +17,8 @@ spec:
         host: sample-app.ns-alpha.svc.cluster.local
         port:
           number: 80
+        weight: 90
+     headers:
+      response:
+        add:
+           x-env: uat-alpha-v2
